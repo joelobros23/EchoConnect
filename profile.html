@@ -3,11 +3,96 @@
 <head>
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-	<title>EchoConnect</title>
-	<script src='[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)'></script>
+	<title>EchoConnect - Profile</title>
+	<script src='https://cdn.tailwindcss.com'></script>
 	<link rel='stylesheet' href='assets/css/style.css'>
 </head>
 <body class='bg-gray-100'>
-	<!-- Content for profile.html -->
+	<!-- Navbar -->
+	<div id='navbar-container'></div>
+
+	<div class='container mx-auto mt-8'>
+		<div class='bg-white rounded-lg shadow-md p-6'>
+			<div class='flex items-center'>
+				<img id='profile-picture' src='assets/images/default.png' alt='Profile Picture' class='w-24 h-24 rounded-full mr-4'>
+				<div>
+					<h2 id='profile-name' class='text-2xl font-semibold'></h2>
+					<p id='profile-username' class='text-gray-600'></p>
+				</div>
+			</div>
+			<div class='mt-4'>
+				<h3 class='text-lg font-semibold'>Bio</h3>
+				<p id='profile-bio' class='text-gray-700'></p>
+			</div>
+			<div class='mt-4'>
+				<a href='edit_profile.html' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Edit Profile</a>
+			</div>
+		</div>
+
+		<div class='mt-8'>
+			<h2 class='text-2xl font-semibold mb-4'>Posts</h2>
+			<div id='posts-container'>
+				<!-- Posts will be loaded here -->
+			</div>
+		</div>
+	</div>
+
+	<script src='assets/js/main.js'></script>
+	<script src='assets/js/profile.js'></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			loadNavbar();
+			loadProfile();
+			loadPosts();
+		});
+
+		async function loadProfile() {
+			const profilePicture = document.getElementById('profile-picture');
+			const profileName = document.getElementById('profile-name');
+			const profileUsername = document.getElementById('profile-username');
+			const profileBio = document.getElementById('profile-bio');
+
+			try {
+				const response = await fetch('api/get_profile.php');
+				const data = await response.json();
+
+				if (data.success) {
+					profilePicture.src = data.profile.profile_picture ? data.profile.profile_picture : 'assets/images/default.png';
+					profileName.textContent = data.profile.first_name + ' ' + data.profile.last_name;
+					profileUsername.textContent = '@' + data.profile.username;
+					profileBio.textContent = data.profile.bio ? data.profile.bio : 'No bio available.';
+				} else {
+					console.error('Error loading profile:', data.message);
+				}
+			} catch (error) {
+				console.error('Error loading profile:', error);
+			}
+		}
+
+		async function loadPosts() {
+			const postsContainer = document.getElementById('posts-container');
+
+			try {
+				const response = await fetch('api/get_posts.php');
+				const data = await response.json();
+
+				if (data.success) {
+					data.posts.forEach(post => {
+						const postElement = document.createElement('div');
+						postElement.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-4', 'mb-4');
+						postElement.innerHTML = `
+							<p class='text-gray-800'>${post.content}</p>
+							<p class='text-gray-500 mt-2'>Posted on: ${post.created_at}</p>
+						`;
+						postsContainer.appendChild(postElement);
+					});
+				} else {
+					console.error('Error loading posts:', data.message);
+				}
+			} catch (error) {
+				console.error('Error loading posts:', error);
+			}
+		}
+	</script>
 </body>
 </html>
