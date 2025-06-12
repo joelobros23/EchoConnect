@@ -1,13 +1,40 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-	<meta charset='UTF-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-	<title>EchoConnect</title>
-	<script src='[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)'></script>
-	<link rel='stylesheet' href='assets/css/style.css'>
-</head>
-<body class='bg-gray-100'>
-	<!-- Content for components/navbar.html -->
-</body>
-</html>
+<nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <a class="text-gray-800 font-bold text-xl" href="home.html">EchoConnect</a>
+            </div>
+            <div class="hidden md:block">
+                <div class="ml-4 flex items-center md:ml-6">
+                    <a href="home.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Home</a>
+                    <a href="profile.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Profile</a>
+                    <a href="friends.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Friends</a>
+                    <a href="search.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Search</a>
+                    <button id="logoutButton" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Logout</button>
+                </div>
+            </div>
+            <div class="-mr-2 flex md:hidden">
+                <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="home.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Home</a>
+            <a href="profile.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Profile</a>
+            <a href="friends.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Friends</a>
+            <a href="search.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Search</a>
+            <button id="mobileLogoutButton" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">Logout</button>
+        </div>
+    </div>
+    <script src="assets/js/auth.js"></script>
+</nav>
