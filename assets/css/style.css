@@ -1,1 +1,227 @@
-/* Content for assets/css/style.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    @apply mx-auto px-4;
+}
+
+/* Navbar */
+.navbar {
+    @apply bg-white shadow-md py-4;
+}
+
+.navbar-brand {
+    @apply text-2xl font-bold text-indigo-600;
+}
+
+.navbar-nav {
+    @apply flex space-x-4;
+}
+
+.nav-link {
+    @apply text-gray-700 hover:text-indigo-600;
+}
+
+/* Buttons */
+.btn {
+    @apply py-2 px-4 rounded;
+}
+
+.btn-primary {
+    @apply bg-indigo-600 text-white hover:bg-indigo-700;
+}
+
+.btn-secondary {
+    @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+}
+
+/* Forms */
+.form-group {
+    @apply mb-4;
+}
+
+.form-label {
+    @apply block text-gray-700 text-sm font-bold mb-2;
+}
+
+.form-control {
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline;
+}
+
+.form-control:focus {
+    @apply outline-none ring-indigo-500 ring-1;
+}
+
+.form-error {
+    @apply text-red-500 text-sm italic;
+}
+
+/* Cards */
+.card {
+    @apply bg-white shadow rounded p-4;
+}
+
+.card-header {
+    @apply text-lg font-semibold mb-2;
+}
+
+.card-body {
+    @apply mb-4;
+}
+
+/* Posts */
+.post {
+    @apply bg-white shadow rounded p-4 mb-4;
+}
+
+.post-header {
+    @apply flex items-center mb-2;
+}
+
+.post-author {
+    @apply font-semibold mr-2;
+}
+
+.post-date {
+    @apply text-gray-500 text-sm;
+}
+
+.post-content {
+    @apply mb-2;
+}
+
+.post-image {
+    @apply max-w-full h-auto rounded;
+}
+
+.post-actions {
+    @apply flex space-x-2 mt-2;
+}
+
+/* Comments */
+.comment {
+    @apply bg-gray-100 rounded p-2 mb-2;
+}
+
+.comment-author {
+    @apply font-semibold mr-2;
+}
+
+.comment-date {
+    @apply text-gray-500 text-sm;
+}
+
+.comment-content {
+    @apply text-sm;
+}
+
+/* Profile */
+.profile-picture {
+    @apply rounded-full h-32 w-32 object-cover;
+}
+
+/* Friend Requests */
+.friend-request {
+    @apply bg-white shadow rounded p-4 mb-4;
+}
+
+/* Utility Classes */
+.text-center {
+    @apply text-center;
+}
+
+.text-left {
+    @apply text-left;
+}
+
+.text-right {
+    @apply text-right;
+}
+
+.mt-4 {
+    @apply mt-4;
+}
+
+.mb-4 {
+    @apply mb-4;
+}
+
+.mx-auto {
+    @apply mx-auto;
+}
+
+.hidden {
+    @apply hidden;
+}
+
+.block {
+    @apply block;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 992px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* Additional Styles */
+.profile-container {
+  @apply container mx-auto mt-8 p-6 bg-white shadow-md rounded-lg;
+}
+
+.profile-header {
+  @apply flex items-center justify-between mb-6;
+}
+
+.profile-info {
+  @apply flex items-center;
+}
+
+.profile-name {
+  @apply text-2xl font-semibold ml-4;
+}
+
+.profile-bio {
+  @apply text-gray-600 mt-2;
+}
+
+.edit-profile-btn {
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline;
+}
+
+.post-form {
+  @apply bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
+}
+
+.post-input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline;
+}
+
+.post-submit-btn {
+  @apply bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline;
+}
+
+.search-bar {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline;
+}
