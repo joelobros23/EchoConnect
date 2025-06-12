@@ -3,11 +3,85 @@
 <head>
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-	<title>EchoConnect</title>
-	<script src='[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)'></script>
+	<title>EchoConnect - Search</title>
+	<script src='https://cdn.tailwindcss.com'></script>
 	<link rel='stylesheet' href='assets/css/style.css'>
 </head>
 <body class='bg-gray-100'>
-	<!-- Content for search.html -->
+	<!-- Navbar -->
+	<div id='navbar-container'></div>
+
+	<div class='container mx-auto mt-8 p-4'>
+		<h1 class='text-2xl font-semibold mb-4'>Search Users</h1>
+
+		<div class='mb-4'>
+			<input type='text' id='searchInput' placeholder='Enter username or email' class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'>
+			<button id='searchButton' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2'>
+				Search
+			</button>
+		</div>
+
+		<div id='searchResults'>
+			<!-- Search results will be displayed here -->
+		</div>
+	</div>
+
+	<script src='assets/js/main.js'></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			loadNavbar();
+
+			const searchInput = document.getElementById('searchInput');
+			const searchButton = document.getElementById('searchButton');
+			const searchResultsContainer = document.getElementById('searchResults');
+
+			searchButton.addEventListener('click', performSearch);
+
+			searchInput.addEventListener('keypress', function(event) {
+				if (event.key === 'Enter') {
+					performSearch();
+				}
+			});
+
+
+			async function performSearch() {
+				const searchTerm = searchInput.value.trim();
+
+				if (!searchTerm) {
+					searchResultsContainer.innerHTML = '<p>Please enter a search term.</p>';
+					return;
+				}
+
+				try {
+					const response = await fetch(`api/search_users.php?query=${searchTerm}`);
+					const data = await response.json();
+
+					if (data.success) {
+						if (data.users.length > 0) {
+							let resultsHtml = '<ul>';
+							data.users.forEach(user => {
+								resultsHtml += `
+									<li class="mb-2 p-2 border rounded">
+										<img src="assets/images/${user.profile_picture}" alt="Profile Picture" class="w-12 h-12 rounded-full inline-block mr-2">
+										<a href="profile.html?id=${user.id}" class="text-blue-500 hover:underline">${user.username}</a>
+										<p>${user.first_name} ${user.last_name}</p>
+									</li>
+								`;
+							});
+							resultsHtml += '</ul>';
+							searchResultsContainer.innerHTML = resultsHtml;
+						} else {
+							searchResultsContainer.innerHTML = '<p>No users found matching your search.</p>';
+						}
+					} else {
+						searchResultsContainer.innerHTML = `<p>Error: ${data.message}</p>`;
+					}
+				} catch (error) {
+					console.error('Error during search:', error);
+					searchResultsContainer.innerHTML = '<p>An error occurred during the search.</p>';
+				}
+			}
+		});
+	</script>
 </body>
 </html>
